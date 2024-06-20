@@ -94,7 +94,8 @@ public class Album extends BaseObservable {
     @Bindable
     public String getPricePence() {
         DecimalFormat decimalFormat = new DecimalFormat("£#.00");
-        return String.valueOf(decimalFormat.format(this.pricePence));
+        Long pounds = this.pricePence/100;
+        return String.valueOf(decimalFormat.format(pounds));
     }
 
     public void setPricePence(Long pricePence) {

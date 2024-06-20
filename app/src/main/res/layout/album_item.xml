@@ -9,13 +9,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            android:background="@drawable/itembackground"
+            android:layout_margin="5dp"
+    >
+
         <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/vinyl"
+                app:srcCompat="@drawable/mishkin"
                 android:id="@+id/albumImage"
-                android:padding="25dp"
+                android:padding="5dp"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
