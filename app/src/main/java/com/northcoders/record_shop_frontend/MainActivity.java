@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.record_shop_frontend.databinding.ActivityMainBinding;
-import com.northcoders.record_shop_frontend.ui.mainactivity.AlbumAdaptor;
-import com.northcoders.record_shop_frontend.ui.mainactivity.MainActivityViewModel;
+import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.AlbumAdaptor;
+import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityViewModel;
 import com.northcoders.record_shop_frontend.model.Album;
 
 import java.util.ArrayList;

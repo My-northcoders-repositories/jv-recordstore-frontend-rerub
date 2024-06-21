@@ -19,11 +19,11 @@ public class Album extends BaseObservable {
 
     String genre;
 
-    int releaseYear;
+    String releaseYear;
 
     Long pricePence;
 
-    public Album(String id, String albumTitle, String artist, String genre, int releaseYear, Long pricePence) {
+    public Album(String id, String albumTitle, String artist, String genre, String releaseYear, Long pricePence) {
         this.id = id;
         this.albumTitle = albumTitle;
         this.artist = artist;
@@ -85,7 +85,7 @@ public class Album extends BaseObservable {
         return String.valueOf(releaseYear);
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(String releaseYear) {
         this.releaseYear = releaseYear;
         notifyPropertyChanged(BR.releaseYear);
 

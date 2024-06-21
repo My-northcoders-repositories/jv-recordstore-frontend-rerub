@@ -1,7 +1,6 @@
-package com.northcoders.record_shop_frontend.ui.mainactivity;
+package com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity;
 
 import android.app.Application;
-import android.telephony.ClosedSubscriberGroupInfo;
 import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;

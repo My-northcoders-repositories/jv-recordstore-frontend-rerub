@@ -1,4 +1,4 @@
-package com.northcoders.record_shop_frontend.ui.mainactivity;
+package com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
