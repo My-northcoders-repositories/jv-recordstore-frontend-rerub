@@ -15,7 +15,6 @@ public class AddNewAlbumActivity extends AppCompatActivity {
     private Album album;
     private ActivityAddNewAlbumBinding binding;
     private AddAlbumClickHandlers clickHandlers;
-    private Application app;
     private MainActivityViewModel viewModel;
 
     @Override
@@ -28,8 +27,11 @@ public class AddNewAlbumActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_album);
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        clickHandlers = new AddAlbumClickHandlers(album, app, viewModel);
+
+        clickHandlers = new AddAlbumClickHandlers(album, this, viewModel);
+
         binding.setAlbum(album);
+
         binding.setClickHandlers(clickHandlers);
 
     }

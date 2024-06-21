@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.record_shop_frontend.databinding.ActivityMainBinding;
 import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.AlbumAdaptor;
+import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityClickHandler;
 import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityViewModel;
 import com.northcoders.record_shop_frontend.model.Album;
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private AlbumAdaptor albumAdaptor;
     private MainActivityViewModel mainActivityViewModel;
     private ActivityMainBinding activityMainBinding;
+    private MainActivityClickHandler clickHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,13 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.setLifecycleOwner(this);
         Log.i("4", "444444444444");
         getAllAlbums();
+        // Initialize ClickHandler
+        clickHandler = new MainActivityClickHandler(mainActivityViewModel, this);
+        // Bind ClickHandler to layout
+        activityMainBinding.setClickHandler(clickHandler);
 
     }
+
     private void getAllAlbums() {
         Log.i("5", "getAllAlbums: ");
         mainActivityViewModel.getData().observe(this, new Observer<List<Album>>() {
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void displayInRecyclerView(){
+    private void displayInRecyclerView() {
         recyclerView = activityMainBinding.recyclerView;
         albumAdaptor = new AlbumAdaptor(albumList, this);
         recyclerView.setAdapter(albumAdaptor);
