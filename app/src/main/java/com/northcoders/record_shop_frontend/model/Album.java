@@ -6,6 +6,8 @@ import com.northcoders.record_shop_frontend.BR;
 import com.google.gson.annotations.SerializedName;
 
 import java.text.DecimalFormat;
+// TODO changed year to string for 2way binding, but left price as long and used explicit getpricePence rather than just price pence.
+// TODO will it work?
 
 public class Album extends BaseObservable {
 
