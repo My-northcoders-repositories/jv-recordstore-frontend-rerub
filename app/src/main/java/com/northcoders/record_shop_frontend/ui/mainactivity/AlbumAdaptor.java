@@ -1,4 +1,4 @@
-package com.northcoders.record_shop_frontend.mainactivity;
+package com.northcoders.record_shop_frontend.ui.mainactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -94,7 +94,6 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
             } else {
                 binding.albumImage.setImageResource(R.drawable.vinyl);
             }
-            binding.albumTitle.setText(albumTitle);
         }
 
     }

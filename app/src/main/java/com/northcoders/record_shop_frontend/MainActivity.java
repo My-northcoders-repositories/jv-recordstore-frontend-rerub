@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.record_shop_frontend.databinding.ActivityMainBinding;
-import com.northcoders.record_shop_frontend.mainactivity.AlbumAdaptor;
-import com.northcoders.record_shop_frontend.mainactivity.MainActivityViewModel;
+import com.northcoders.record_shop_frontend.ui.mainactivity.AlbumAdaptor;
+import com.northcoders.record_shop_frontend.ui.mainactivity.MainActivityViewModel;
 import com.northcoders.record_shop_frontend.model.Album;
 
 import java.util.ArrayList;
@@ -45,12 +45,8 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel.getData().observe(this, new Observer<List<Album>>() {
             @Override
             public void onChanged(List<Album> albumsFromLiveData) {
-                // albums refers to the variable name of your List of Album objects
-                // albumsFromLiveData is cast to this type
-                Log.i("5", "55555555555555");
                 albumList = new ArrayList<>(albumsFromLiveData);
 
-                Log.i("6", "6666666666");
                 displayInRecyclerView();
             }
         });

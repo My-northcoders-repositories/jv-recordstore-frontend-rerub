@@ -1,4 +1,4 @@
-package com.northcoders.record_shop_frontend.mainactivity;
+package com.northcoders.record_shop_frontend.ui.mainactivity;
 
 import android.app.Application;
 import android.telephony.ClosedSubscriberGroupInfo;
