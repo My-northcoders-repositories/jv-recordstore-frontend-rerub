@@ -20,9 +20,8 @@ public class AlbumRepository {
     }
 
     public MutableLiveData<List<Album>>
-getMutableLiveData() {
-
-// In this method, initialise an AlbumApiService variable named albumApiService and assign it the value of the getService() method from the RetrofitInstance.
+    getMutableLiveData() {
+        // In this method, initialise an AlbumApiService variable named albumApiService and assign it the value of the getService() method from the RetrofitInstance.
         AlbumAPIService albumAPIService = RetrofitInstance.getService();
         //Then assign the result of a method call to albumApiService.getAllAlbums() to a variable called call.
         Log.d("7", "getMutableLiveData: ");
@@ -42,12 +41,30 @@ getMutableLiveData() {
 
             @Override
             public void onFailure(Call<List<Album>> call, Throwable throwable) {
-
             }
-
         });
         return liveData;
     }
+
+
+    public void addAlbum(Album album){
+        AlbumAPIService albumAPIService = RetrofitInstance.getService();
+        Call<Album> call = albumAPIService.createAlbum(album);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+
+            }
+        });
+
+    }
+
 }
 
 
