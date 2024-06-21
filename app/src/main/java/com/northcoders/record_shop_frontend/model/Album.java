@@ -23,9 +23,9 @@ public class Album extends BaseObservable {
 
     String releaseYear;
 
-    Long pricePence;
+    String pricePence;
 
-    public Album(String id, String albumTitle, String artist, String genre, String releaseYear, Long pricePence) {
+    public Album(String id, String albumTitle, String artist, String genre, String releaseYear, String pricePence) {
         this.id = id;
         this.albumTitle = albumTitle;
         this.artist = artist;
@@ -95,12 +95,10 @@ public class Album extends BaseObservable {
 
     @Bindable
     public String getPricePence() {
-        DecimalFormat decimalFormat = new DecimalFormat("£#.00");
-        Long pounds = this.pricePence/100;
-        return String.valueOf(decimalFormat.format(pounds));
+        return this.pricePence;
     }
 
-    public void setPricePence(Long pricePence) {
+    public void setPricePence(String pricePence) {
         this.pricePence = pricePence;
         notifyPropertyChanged(BR.pricePence);
 

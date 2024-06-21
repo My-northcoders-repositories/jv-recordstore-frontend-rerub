@@ -1,7 +1,6 @@
 package com.northcoders.record_shop_frontend.ui.mainactivity.addalbum;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ public class AddAlbumClickHandlers {
         this.viewModel = viewModel;
     }
 
-    public void createNewAlbum(View view) {
+    public void onCreateNewAlbumClicked(View view) {
         if (album.getAlbumTitle().isEmpty()
                 || album.getArtist().isEmpty()
                 || album.getGenre().isEmpty()
@@ -35,7 +34,7 @@ public class AddAlbumClickHandlers {
             newAlbum.setAlbumTitle(album.getAlbumTitle());
             newAlbum.setArtist(album.getArtist());
             newAlbum.setGenre(album.getGenre());
-            newAlbum.setPricePence(Long.valueOf(album.getPricePence()));
+            newAlbum.setPricePence(album.getPricePence());
             newAlbum.setReleaseYear(album.getReleaseYear());
 
             viewModel.addAlbum(newAlbum);
@@ -45,7 +44,7 @@ public class AddAlbumClickHandlers {
 
     }
 
-    public void goBackToMainView(View view) {
+    public void goBackToMainViewClicked(View view) {
 
         Intent intent = new Intent(application.getApplicationContext(), MainActivity.class);
         application.getApplicationContext().startActivity(intent);

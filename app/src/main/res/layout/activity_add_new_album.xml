@@ -3,9 +3,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<data>
-    <variable name="album" type="com.northcoders.record_shop_frontend.model.Album"/>
-</data>
+    <data>
+        <variable name="album"
+                  type="com.northcoders.record_shop_frontend.model.Album"/>
+        <variable name="clickHandlers"
+                  type="com.northcoders.record_shop_frontend.ui.mainactivity.addalbum.AddAlbumClickHandlers"/>
+    </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="@={album.getPricePence}"
+                android:text="@={album.pricePence}"
                 android:ems="10"
                 android:id="@+id/inputPrice"
                 app:layout_constraintTop_toBottomOf="@+id/inputYear"
@@ -91,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/submitButton"
+                android:onClick="@{clickHandlers::onCreateNewAlbumClicked}"
                 app:layout_constraintTop_toBottomOf="@+id/inputPrice"
                 app:layout_constraintBottom_toTopOf="@+id/cat"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,11 +102,13 @@
                 app:layout_constraintVertical_bias="0.2"
 
                 app:iconTint="#E91E63" android:background="#9C27B0"
-                style="@android:style/Widget.Material.Button.Borderless.Colored"/>
+                style="@android:style/Widget.Material.Button.Borderless.Colored"
+        />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:onClick="@{clickHandlers::goBackToMainViewClicked}"
                 app:srcCompat="@android:drawable/ic_menu_revert"
                 android:id="@+id/floatingActionButton"
                 app:layout_constraintBottom_toTopOf="@+id/cat"
