@@ -2,6 +2,8 @@ package com.northcoders.record_shop_frontend;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -15,6 +17,7 @@ import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainAct
 import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityViewModel;
 import com.northcoders.record_shop_frontend.model.Album;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +43,25 @@ public class MainActivity extends AppCompatActivity {
         Log.i("3", "33333333333333");
         activityMainBinding.setLifecycleOwner(this);
         Log.i("4", "444444444444");
-        getAllAlbums();
+        getAllAlbums("none");
         // Initialize ClickHandler
         clickHandler = new MainActivityClickHandler(mainActivityViewModel, this);
         // Bind ClickHandler to layout
         activityMainBinding.setClickHandler(clickHandler);
 
+        // Initialise spinner
+        //create an ArrayAdapter using the string array and default spinner layout
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sort_options, android.R.layout.simple_spinner_item);
+        //specify the layout to use
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        // apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        Object sortedBy = spinner.getSelectedItem();
+
     }
 
-    private void getAllAlbums() {
+    private void getAllAlbums(String sortedBy) {
         Log.i("5", "getAllAlbums: ");
         mainActivityViewModel.getData().observe(this, new Observer<List<Album>>() {
             @Override
@@ -58,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 displayInRecyclerView();
             }
         });
+
+
     }
 
     private void displayInRecyclerView() {
