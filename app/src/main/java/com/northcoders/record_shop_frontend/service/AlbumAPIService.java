@@ -16,7 +16,7 @@ public interface AlbumAPIService {
     @PUT("records/update")
     Call<Album> updateAlbum(@Body Album album);
 
-    @DELETE("records/delete/by?id={id}")
-    Call<Album> deleteAlbumBy(@Path("id") String id);
+    @DELETE("records/delete/by")
+    Call<Album> deleteAlbumBy(@Query("id") String id);
 
 }

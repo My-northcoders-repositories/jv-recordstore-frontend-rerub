@@ -2,6 +2,7 @@ package com.northcoders.record_shop_frontend.ui.mainactivity.updateAlbum;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
@@ -48,16 +49,16 @@ public class UpdateAlbumClickHandler {
         //  If not, get the id of the `Album` object and pass this, and the new `Album` object, to the `updateAlbum()` method from the ViewModel and start the `MainActivity`
         else {
             mainActivityViewModel.updateAlbum(updatedAlbum);
+            Intent intent = new Intent(context, MainActivity.class);
+            context.startActivity(intent);
         }
     }
 
     public void onDeleteButtonClicked(View view) {
-        //- The 'Delete' button logic will need to get the album id and pass this to the delete method from the view model, and also start the `MainActivity` to switch back to this view.
         String id = album.getId();
-
-        // The id will be passed to the delete method in the ViewModel and be used in the DELETE Retrofit method, passing the id as a path variable to the backend API.
         mainActivityViewModel.deleteAlbum(id);
-        // TODO this maybe needs to be a long and might have to be changed in the repostiory part
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
     }
 
     public void onBackButtonClicked(View view) {

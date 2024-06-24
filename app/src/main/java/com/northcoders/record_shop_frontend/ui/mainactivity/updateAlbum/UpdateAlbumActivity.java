@@ -27,13 +27,9 @@ private static final String ALBUM_KEY = "ALBUM_KEY";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             activityEditAlbumBinding = DataBindingUtil.setContentView(this, R.layout.activity_edit_album);
             album = getIntent().getParcelableExtra(ALBUM_KEY, Album.class);
-            Log.d("0", "onCreate: ");
             activityEditAlbumBinding.setAlbum(album);
-            Log.d("1", "onCreate: ");
             MainActivityViewModel viewModel =  new ViewModelProvider(this).get(MainActivityViewModel.class);
-            Log.d("2", "onCreate: ");
             updateAlbumClickHandler = new UpdateAlbumClickHandler(this, viewModel, album);
-            Log.d("3", "onCreate: ");
             activityEditAlbumBinding.setClickHandlers((updateAlbumClickHandler));
 
         }

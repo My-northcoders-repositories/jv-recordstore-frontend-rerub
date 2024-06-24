@@ -24,12 +24,5 @@ public class MainActivityClickHandler {
         Intent intent = new Intent(context, AddNewAlbumActivity.class);
         Log.i("b", "bbbbbbbbbbb ");
         context.startActivity(intent);
-
     }
-
-    public void goToEditAbumClicked(View view) {
-        Intent intent = new Intent(context, UpdateAlbumActivity.class);
-        context.startActivity(intent);
-    }
-
 }

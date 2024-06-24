@@ -65,24 +65,21 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
         ImageView albumCover;
 
 
+
         public AlbumViewHolder(AlbumItemBinding binding, RecyclerViewInterface recyclerViewInterface) {
             super(binding.getRoot());
 
             this.binding = binding;
-
             albumCover = itemView.findViewById(R.id.albumImage);
-            Log.i("1", "AlbumViewHolder: ");
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i("1", "onClickkk: ");
                     if (recyclerViewInterface != null) {
                         int position = getAdapterPosition();
-                        Log.d("getting position then what?", "onClick: ");
-
                         if (position != RecyclerView.NO_POSITION) {
                             recyclerViewInterface.onItemClick(position);
-                            Log.d("calling recyclerviewinterface", "onClick: ");
                         }
                     } else {
                         Log.d("2", "onClick: recyclerview is null, or has no position?");
