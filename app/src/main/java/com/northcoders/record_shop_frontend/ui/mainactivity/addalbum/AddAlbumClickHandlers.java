@@ -34,7 +34,6 @@ public class AddAlbumClickHandlers {
             Toast.makeText(context, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
         }else{
             Log.i("2", "onCreateNewAlbumClicked: ");
-// TODO crashing here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Intent intent = new Intent(context, MainActivity.class);
             Log.i("3", "onCreateNewAlbumClicked: ");
 
@@ -46,7 +45,6 @@ public class AddAlbumClickHandlers {
             newAlbum.setGenre(album.getGenre());
             newAlbum.setPricePence(album.getPricePence());
             newAlbum.setReleaseYear(album.getReleaseYear());
-            Log.i("5", "onCreateNewAlbumClicked: ");
 
             viewModel.addAlbum(newAlbum);
             context.startActivity(intent);

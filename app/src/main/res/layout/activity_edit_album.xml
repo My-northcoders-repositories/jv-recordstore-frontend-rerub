@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="album"
+                type="com.northcoders.record_shop_frontend.model.Album"/>
+        <variable
+                name="clickHandlers"
+                type="com.northcoders.record_shop_frontend.ui.mainactivity.updateAlbum.UpdateAlbumClickHandler"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            tools:context=".MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/neumorphism_background"
+                android:elevation="4dp"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/mishkin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/mishkin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                    android:id="@+id/inputID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={album.id}"
+                    android:ems="10"
+                    android:hint="Input Album id"
+                    app:layout_constraintTop_toBottomOf="@+id/mishkin"/>
+            <EditText
+                    android:id="@+id/inputTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={album.albumTitle}"
+                    android:ems="10"
+                    android:hint="Input Album Title"
+                    app:layout_constraintTop_toBottomOf="@+id/inputID"/>
+
+            <EditText
+                    android:id="@+id/inputArtist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={album.artist}"
+                    android:ems="10"
+                    android:hint="Input Artist Name"
+                    app:layout_constraintTop_toBottomOf="@+id/inputTitle"/>
+
+            <EditText
+                    android:id="@+id/inputGenre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="@={album.genre}"
+                    android:ems="10"
+                    android:hint="Input Album Genre"
+                    app:layout_constraintTop_toBottomOf="@+id/inputArtist"/>
+
+            <EditText
+                    android:id="@+id/inputYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="@={album.releaseYear}"
+                    android:ems="10"
+                    android:hint="Input Release Year"
+                    app:layout_constraintTop_toBottomOf="@+id/inputGenre"/>
+
+            <EditText
+                    android:id="@+id/inputPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="@={album.pricePence}"
+                    android:ems="10"
+                    android:hint="Input Album Price (in pennies)"
+                    app:layout_constraintTop_toBottomOf="@+id/inputYear"/>
+
+            <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:onClick="@{clickHandlers::onSubmitButtonClicked}"
+                    app:layout_constraintTop_toBottomOf="@+id/inputPrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.2"
+            />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_revert"
+                    android:onClick="@{clickHandlers::onBackButtonClicked}"
+                    app:layout_constraintTop_toBottomOf="@+id/inputPrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/submitButton"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:onClick="@{clickHandlers::onDeleteButtonClicked}"
+                    app:layout_constraintTop_toBottomOf="@+id/inputPrice"
+                    app:layout_constraintStart_toEndOf="@id/submitButton"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+                android:id="@+id/cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/cat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:elevation="4dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

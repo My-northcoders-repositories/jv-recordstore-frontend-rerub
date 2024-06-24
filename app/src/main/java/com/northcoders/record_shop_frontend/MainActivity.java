@@ -1,5 +1,6 @@
 package com.northcoders.record_shop_frontend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -16,12 +17,15 @@ import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.AlbumAd
 import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityClickHandler;
 import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.MainActivityViewModel;
 import com.northcoders.record_shop_frontend.model.Album;
+import com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity.RecyclerViewInterface;
+import com.northcoders.record_shop_frontend.ui.mainactivity.updateAlbum.UpdateAlbumActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     private RecyclerView recyclerView;
     private List<Album> albumList;
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("3", "33333333333333");
         activityMainBinding.setLifecycleOwner(this);
         Log.i("4", "444444444444");
-        getAllAlbums("none");
+        getAllAlbums();
         // Initialize ClickHandler
         clickHandler = new MainActivityClickHandler(mainActivityViewModel, this);
         // Bind ClickHandler to layout
@@ -57,27 +61,62 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         // apply the adapter to the spinner
         spinner.setAdapter(adapter);
-        Object sortedBy = spinner.getSelectedItem();
+
+        String sortedByString = spinner.getSelectedItem().toString();
+        Log.i(sortedByString, "onCreate: ");
+        String upper = (sortedByString.toUpperCase());
+        Log.i(upper, "onCreate: ");
+        String cleaned = cleanSortedBy(upper);
+        Log.i(cleaned, "Cleaned ");
+        //sortAlbums(cleaned);
+
 
     }
 
-    private void getAllAlbums(String sortedBy) {
+    private void getAllAlbums() {
         Log.i("5", "getAllAlbums: ");
         mainActivityViewModel.getData().observe(this, new Observer<List<Album>>() {
             @Override
             public void onChanged(List<Album> albumsFromLiveData) {
                 albumList = new ArrayList<>(albumsFromLiveData);
-
                 displayInRecyclerView();
             }
         });
-
-
     }
 
+    public void sortAlbums(String sortedBy) {
+        Log.i(sortedBy, "sortAlbums: ");
+        switch (sortedBy) {
+            case "TITLE":
+                albumList.stream().sorted();
+                Log.i("title", "sortAlbums: ");
+                displayInRecyclerView();
+            case "PRICE":
+                albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getPricePence())));
+                Log.i("price", "sortAlbums: ");
+                displayInRecyclerView();
+            case "DATE":
+                albumList =  albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getReleaseYear()))).collect(Collectors.toList());
+                Log.i("date", "sortAlbums: ");
+                displayInRecyclerView();
+        }
+    }
+
+
+    private String cleanSortedBy(String sortedByString) {
+        Log.d("2", "cleanSortedBy: ");
+        if (sortedByString.contains("TITLE")) {
+            return "TITLE";
+        } else if (sortedByString.contains("DATE")) {
+            return "DATE";
+        } else return "not working";
+    }
+
+
     private void displayInRecyclerView() {
+        Log.i("1", "displayInRecyclerView: ");
         recyclerView = activityMainBinding.recyclerView;
-        albumAdaptor = new AlbumAdaptor(albumList, this);
+        albumAdaptor = new AlbumAdaptor(albumList, this, this);
         recyclerView.setAdapter(albumAdaptor);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -85,5 +124,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Log.i("129", "onItemClick: ");
+        Intent intent = new Intent(this, UpdateAlbumActivity.class);
+        Log.i("beofre album key bit?", "onItemClick: ");
+        intent.putExtra("ALBUM_KEY", albumList.get(position));
+        Log.d("just before start activity", "onItemClick: ");
+        startActivity(intent);
+
+    }
 }
 

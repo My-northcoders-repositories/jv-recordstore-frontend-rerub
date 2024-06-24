@@ -1,6 +1,8 @@
 package com.northcoders.record_shop_frontend.ui.mainactivity.mainactivity;
 
 import android.content.Context;
+import android.telephony.ClosedSubscriberGroupInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +22,13 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
 
     private List<Album> albumList;
     private Context context;
+    private RecyclerViewInterface recyclerViewInterface;
 
 
-    public AlbumAdaptor(List<Album> albums, Context context) {
+    public AlbumAdaptor(List<Album> albums, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.albumList = albums;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -38,7 +42,7 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
                 .inflate(R.layout.album_item, viewGroup, false);
 
         // TODO no idea what is going on here....
-        return new AlbumViewHolder(AlbumItemBinding.bind(view));
+        return new AlbumViewHolder(AlbumItemBinding.bind(view), recyclerViewInterface);
     }
 
     // onBindViewHolder: which deals with the setting of different data and methods related to particular items of the RecyclerView. In this method get the album object, which is at the passed in position, and give this as an argument to the setAlbum() method of the holder.albumItemBinding.
@@ -60,11 +64,33 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
         private AlbumItemBinding binding;
         ImageView albumCover;
 
-        public AlbumViewHolder(AlbumItemBinding binding) {
+
+        public AlbumViewHolder(AlbumItemBinding binding, RecyclerViewInterface recyclerViewInterface) {
             super(binding.getRoot());
+
             this.binding = binding;
+
             albumCover = itemView.findViewById(R.id.albumImage);
+            Log.i("1", "AlbumViewHolder: ");
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("1", "onClickkk: ");
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+                        Log.d("getting position then what?", "onClick: ");
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(position);
+                            Log.d("calling recyclerviewinterface", "onClick: ");
+                        }
+                    } else {
+                        Log.d("2", "onClick: recyclerview is null, or has no position?");
+                    }
+                }
+            });
         }
+
 
         static Map<String, Integer> albumCoverMap = new HashMap<>();
 
@@ -95,6 +121,7 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
                 binding.albumImage.setImageResource(R.drawable.vinyl);
             }
         }
+
 
     }
 }

@@ -20,8 +20,7 @@ public class AlbumRepository {
         this.app = app;
     }
 
-    public MutableLiveData<List<Album>>
-    getMutableLiveData() {
+    public MutableLiveData<List<Album>> getMutableLiveData() {
         // In this method, initialise an AlbumApiService variable named albumApiService and assign it the value of the getService() method from the RetrofitInstance.
         AlbumAPIService albumAPIService = RetrofitInstance.getService();
         //Then assign the result of a method call to albumApiService.getAllAlbums() to a variable called call.
@@ -48,7 +47,7 @@ public class AlbumRepository {
     }
 
 
-    public void addAlbum(Album album){
+    public void addAlbum(Album album) {
         AlbumAPIService albumAPIService = RetrofitInstance.getService();
         Call<Album> call = albumAPIService.createAlbum(album);
 
@@ -56,7 +55,7 @@ public class AlbumRepository {
             @Override
             public void onResponse(Call<Album> call, Response<Album> response) {
 
-                Toast.makeText(app.getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(app.getApplicationContext(), "successful add", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,7 +64,41 @@ public class AlbumRepository {
                 Toast.makeText(app.getApplicationContext(), "no good", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    public void updateAlbum(Album album) {
+        AlbumAPIService albumAPIService = RetrofitInstance.getService();
+        Call<Album> call = albumAPIService.updateAlbum(album);
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(app.getApplicationContext(), "successful edit", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+                Toast.makeText(app.getApplicationContext(), "no bueno", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public void deleteAlbum(String id) {
+        AlbumAPIService albumAPIService = RetrofitInstance.getService();
+        Call<Album> call = albumAPIService.deleteAlbumBy(id);
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(app.getApplicationContext(), "successful delete", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+                Toast.makeText(app.getApplicationContext(), "no bueno", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 }
