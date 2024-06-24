@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.northcoders.record_shop_frontend.R;
 import com.northcoders.record_shop_frontend.databinding.AlbumItemBinding;
 import com.northcoders.record_shop_frontend.model.Album;
@@ -63,7 +64,7 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
     public static class AlbumViewHolder extends RecyclerView.ViewHolder {
         private AlbumItemBinding binding;
         ImageView albumCover;
-
+        FloatingActionButton editButton;
 
 
         public AlbumViewHolder(AlbumItemBinding binding, RecyclerViewInterface recyclerViewInterface) {
@@ -71,8 +72,9 @@ public class AlbumAdaptor extends RecyclerView.Adapter<AlbumAdaptor.AlbumViewHol
 
             this.binding = binding;
             albumCover = itemView.findViewById(R.id.albumImage);
+            editButton =  itemView.findViewById(R.id.editButton);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i("1", "onClickkk: ");

@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 app:srcCompat="@android:drawable/ic_menu_edit"
-                android:id="@+id/floatingActionButton3"
+                android:id="@+id/editButton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="5dp"
