@@ -3,6 +3,8 @@ package com.northcoders.record_shop_frontend;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,13 +64,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         // apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        String sortedByString = spinner.getSelectedItem().toString();
-        Log.i(sortedByString, "onCreate: ");
-        String upper = (sortedByString.toUpperCase());
-        Log.i(upper, "onCreate: ");
-        String cleaned = cleanSortedBy(upper);
-        Log.i(cleaned, "Cleaned ");
-        //sortAlbums(cleaned);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String sortedByString = spinner.getSelectedItem().toString();
+                Log.i(sortedByString, "onCreate: ");
+                String upper = (sortedByString.toUpperCase());
+                Log.i(upper, "onCreate: ");
+                String cleaned = cleanSortedBy(upper);
+                Log.i(cleaned, "Cleaned ");
+                sortAlbums(cleaned);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
     }
@@ -88,18 +99,26 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Log.i(sortedBy, "sortAlbums: ");
         switch (sortedBy) {
             case "TITLE":
-                albumList.stream().sorted();
-                Log.i("title", "sortAlbums: ");
-                displayInRecyclerView();
+                albumList = albumList.stream()
+                        .sorted(Comparator.comparing(Album::getAlbumTitle))
+                        .collect(Collectors.toList());
+                break;
+            case "ARTIST":
+                albumList = albumList.stream()
+                        .sorted(Comparator.comparing(Album::getArtist))
+                        .collect(Collectors.toList());
+                break;
             case "PRICE":
-                albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getPricePence())));
-                Log.i("price", "sortAlbums: ");
-                displayInRecyclerView();
+                albumList = albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getPricePence()))).collect(Collectors.toList());
+                break;
             case "DATE":
-                albumList =  albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getReleaseYear()))).collect(Collectors.toList());
+                albumList = albumList.stream().sorted(Comparator.comparingInt(album -> Integer.parseInt(album.getReleaseYear()))).collect(Collectors.toList());
                 Log.i("date", "sortAlbums: ");
-                displayInRecyclerView();
+                break;
+
         }
+        displayInRecyclerView();
+
     }
 
 
@@ -109,7 +128,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             return "TITLE";
         } else if (sortedByString.contains("DATE")) {
             return "DATE";
-        } else return "not working";
+        }else if (sortedByString.contains("ARTIST")) {
+            return "ARTIST";
+        }else if (sortedByString.contains("PRICE")){
+            return "PRICE";
+        }
+
+
+        else return "not working";
     }
 
 

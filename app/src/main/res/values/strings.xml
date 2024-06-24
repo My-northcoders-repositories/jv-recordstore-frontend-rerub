@@ -3,6 +3,7 @@
 
 
     <string-array name="sort_options">
+        <item>Sort albums by...</item>
         <item>Sort by Release Date</item>
         <item>Sort by Price</item>
         <item>Sort by Artist</item>
