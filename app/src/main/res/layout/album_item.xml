@@ -24,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                android:background="@drawable/album_background" />
+                android:background="@drawable/album_background"/>
 
         <TextView
                 android:text="Title:"
@@ -37,7 +37,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="@{album.albumTitle}"
@@ -50,7 +50,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="Artist:"
@@ -63,7 +63,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="@{album.artist}"
@@ -76,7 +76,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="Genre:"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="@{album.genre}"
@@ -102,7 +102,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="Release Year:"
@@ -115,7 +115,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="@{album.releaseYear}"
@@ -128,7 +128,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="Price"
@@ -140,7 +140,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/albumReleaseYearTag"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <TextView
                 android:text="@{album.pricePence}"
@@ -153,17 +153,18 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                android:background="#40FFFFFF" />
+                android:background="#40FFFFFF"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:srcCompat="@android:drawable/ic_menu_edit"
+                app:srcCompat="@drawable/edittext"
                 android:id="@+id/editButton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="5dp"
-                android:backgroundTint="#80FFFFFF" />
+                app:backgroundTint="@android:color/transparent"
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
